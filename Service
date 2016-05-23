@@ -1,0 +1,104 @@
+		<!doctype html>
+		<html>
+		<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<link href="css/global.css" type="text/css" rel="stylesheet">
+		<link href="css/jquery-ui-1.11.4.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery-1.12.0.js"></script>
+		<script src="js/jquery-ui-1.11.4.js"></script>
+		<script src="js/functions.js" type="text/javascript"></script>
+		<script src="js/clientutilities.js"></script>
+		<script>
+			$(document).ready(function() {
+				fetchOOS();
+				$('button').button();
+				$('.multib').button({
+					icons: {
+						primary: "ui-icon-triangle-1-s"
+					}
+				});
+				$('.multib .ui-button-text').css({"padding-left":"0px","padding-right":"0px"});
+				
+				 $('#court').click(function() {
+					$('#courtdialog').dialog('open'); 
+				});
+				
+				$('#special').click(function() {
+					$('#specialdialog').dialog('open');
+				});
+				
+				 $('.oos').click(function(event) {
+					var oosReason = $(event.target).text();
+					$('#Reason').val(oosReason);
+					//if ($('.ui-dialog').is(':visible')) {
+					//	$('.ui-dialog').dialog('close');
+					//}
+					validatepage();
+				});
+				
+				/* Select     */
+			      $('#courtdialog').dialog({
+					autoOpen: false,
+					height: "400",
+					width: "700",
+					modal: true,
+					position: {my: "center", at: "center"},
+					title: "Choose Out Of Service / COURT", 
+					draggable: false,
+					show: 'fade',
+					hide: 'fade',
+					resizable: false
+			
+				});  
+				
+				 $('#specialdialog').dialog({
+					autoOpen: false,
+					height: "450",
+					width: "700",
+					modal: true,
+					position: {my: "center", at: "center"},
+					title: "Choose Out of Service / SPECIAL ASSIGNMENT ", 
+					draggable: false,
+					show: 'fade',
+					hide: 'fade',
+					resizable: false
+				}); 
+				
+				 
+			}); //Close Document Ready
+			
+			function validatepage() {
+				oosForm.submit.click();
+			} 
+		</script>
+	</head>
+	<body>
+    
+		<div id="container" style="text-align: center;">
+			<div id="content">
+				<form action="OutOfServiceQuery.aspx?queryfile=outofservice.qry" method="post" id="oosForm" name="oosForm">
+					<div id="topsect" style="height: 50px; width:100%; margin-bottom: 20px;font-size: 2em;" class="drops">Out of Service
+					</div>
+					<div id="oosreason" style="text-align: center;">
+						<div id="courtdialog" style="text-align:center;">
+							<div id="crtcl" style="position: absolute; left: 10px; bottom: 10px; float: left;text-align:center;">
+								<button id="crtCloseBtn" type="button" class="jBtn canBtn" onClick="$(#courtdialog).dialog('close');"> </button>
+							</div>
+						</div>
+						<div id="specialdialog" style="text-align: center;">
+							<div id="spclcl" style="position: absolute; left: 10px; bottom: 10px; float: left;text-align:center;">
+								<button id="spclCloseBtn" type="button" class="jBtn canBtn" onClick="$(#specialdialog).dialog('close');"> </button>
+                       
+							</div>
+						</div>
+					</div>
+					<div id="ooslegacy" class="legacy">
+						<input type="text" id="Reason"/>
+					</div>
+					<input class="hiddensubmit" TABINDEX="-1" type="submit" name="submit" id="submit" value="submit">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
